@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LandingPage from './components/auth/Landing'
+import LandingPage from './components/auth/LandingPage'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
