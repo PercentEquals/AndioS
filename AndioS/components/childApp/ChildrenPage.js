@@ -1,25 +1,17 @@
 import React from 'react';
 
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import localize from '../locale/Localization';
 import Background from '../Background';
 
-function LandingPage({ navigation }) {
+function ChildrenPage() {
     return (  
         <View style={styles.container}>
             <Background />
 
             <View style={styles.content}>
                 <Text style={styles.header}>{localize('welcome')} 👋</Text>
-
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Children')}>
-                    <Text style={styles.buttonText}>{localize('start') + ' 💪'}</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Parent')}>
-                    <Text style={styles.buttonTextSmaller}>{localize('parent-zone') + ' 🔐'}</Text>
-                </TouchableOpacity>
             </View>
         </View>
     );
@@ -64,4 +56,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LandingPage;
+export default ChildrenPage;

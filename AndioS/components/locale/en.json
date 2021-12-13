@@ -1,5 +1,7 @@
 {
     "welcome": "Hello",
     "start": "Start",
-    "parent-zone": "Parent zone"
+    "parent-zone": "Parent zone",
+    "children-page": "Children Panel",
+    "parent-page": "Parent Panel"
 }

@@ -25,12 +25,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "jest-expo": "^42.1.0",
+    "jest-expo-enzyme": "^1.2.4",
     "react-test-renderer": "^17.0.2"
   },
   "private": true,
   "jest": {
-    "preset": "jest-expo",
+    "preset": "jest-expo-enzyme",
     "transformIgnorePatterns": [
       "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
     ],

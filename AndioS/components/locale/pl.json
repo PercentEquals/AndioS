@@ -1,5 +1,7 @@
 {
     "welcome": "Cześć",
     "start": "Start",
-    "parent-zone": "Strefa rodzica"
+    "parent-zone": "Strefa rodzica",
+    "children-page": "Panel dzieciaka",
+    "parent-page": "Panel rodzica"
 }
