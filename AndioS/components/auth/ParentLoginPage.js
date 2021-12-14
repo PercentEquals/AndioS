@@ -17,48 +17,55 @@ function ParentPage({ navigation }) {
     const [expectedPassword, setExpectedPassword] = useState('');
     const [password, setPassword] = useState('');
 
+    async function savePasswordAndNavigateToParentApp() {
+        const digest = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, password);
+        setExpectedPassword(digest);
+
+        await AsyncStorage.setItem('@expectedPassword', expectedPassword);
+        navigation.navigate('Parent');
+    }
+
     async function register() {
         Alert.alert(localize('register'), localize('password-confirm'), [
-            { text: localize('yes'), onPress: async () => {
-                const digest = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, password);
-                setExpectedPassword(digest);
-
-                await AsyncStorage.setItem('@expectedPassword', expectedPassword);
-                navigation.navigate('Parent');
-            }},
+            { text: localize('yes'), onPress: async () => await savePasswordAndNavigateToParentApp() },
             { text: localize('no'), onPress: () => {} },
         ]);
+    }
+
+    async function getExpectedPassword() {
+        const expectedPassword = await AsyncStorage.getItem('@expectedPassword');
+        if (expectedPassword) {
+            setExpectedPassword(expectedPassword);
+        }
+    }
+
+    async function login() { 
+        const digest = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, password);
+        await getExpectedPassword();
+
+        if (digest === expectedPassword) {
+            navigation.navigate('Parent');
+        }
+        else {
+            Alert.alert(localize('login-error'), localize('wrong-password'));
+        }
     }
 
     async function navigateToParentApp() {
         if (password.length !== 4) {
             return;
         }
-
-        // Register
-        if (expectedPassword.length === 0) {
-            register();
+        else if (expectedPassword.length === 0) {
+            await register();
         }
-        // Login
         else
         {
-            const digest = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, password);
-
-            if (digest === expectedPassword) {
-                navigation.navigate('Parent');
-            }
-            else {
-                Alert.alert(localize('login-error'), localize('wrong-password'));
-            }
+            await login();
         }
     }
 
     useEffect(() => {
-        AsyncStorage.getItem('@expectedPassword').then(value => {
-            if (value) {
-                setExpectedPassword(value);
-            }
-        });
+        getExpectedPassword();
     });
 
     return (  
