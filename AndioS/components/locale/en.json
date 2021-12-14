@@ -3,5 +3,17 @@
     "start": "Start",
     "parent-zone": "Parent zone",
     "children-page": "Children Panel",
-    "parent-page": "Parent Panel"
+    "parent-page": "Parent Panel",
+    "challenges": "Challenges",
+    "remaining-time": "Remaining time",
+    "login": "Login",
+    "register": "Register",
+    "next": "Next",
+    "login-error": "Could not log in",
+    "wrong-password": "Wrong password",
+    "yes": "Yes",
+    "no": "No",
+    "password-confirm": "Are You sure that this is Your password?\nIt can only be changed by reinstalling the app!",
+    "no-challenges-header": "No new challenges",
+    "no-challenges-subheader": "Try asking your parents for new one!"
 }

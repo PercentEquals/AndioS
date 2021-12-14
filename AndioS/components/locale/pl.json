@@ -3,5 +3,17 @@
     "start": "Start",
     "parent-zone": "Strefa rodzica",
     "children-page": "Panel dzieciaka",
-    "parent-page": "Panel rodzica"
+    "parent-page": "Panel rodzica",
+    "challenges": "Wyzwania",
+    "remaining-time": "Pozostały czas",
+    "login": "Zaloguj",
+    "register": "Rejestracja",
+    "next": "Dalej",
+    "login-error": "Nie można zalogować",
+    "wrong-password": "Złe hasło",
+    "yes": "Tak",
+    "no": "Nie",
+    "password-confirm": "Czy jesteś pewny że chcesz takie hasło?\nPóźniejsza zmiana będzie możliwa jedynie poprzez reinstalację aplikacji!",
+    "no-challenges-header": "Brak nowych wyzwań",
+    "no-challenges-subheader": "Poproś rodziców o dodanie kolejnych!"
 }

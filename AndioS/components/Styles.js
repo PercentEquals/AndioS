@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         zIndex: 10,
         maxHeight: '100%',
+        flexGrow: 1,
     },
     header: {
         fontSize: 40,
@@ -29,6 +30,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 35,
         marginTop: 10,
+    },
+    subheader: {
+        fontSize: 20,
+        color: '#fff',
+        marginBottom: 10,
+        marginTop: 10,
+        textAlign: 'center'
     },
     button: {
         borderColor: '#fff',

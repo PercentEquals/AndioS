@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
 
 import localize from '../locale/Localization';
 import Background from '../Background';
@@ -9,7 +9,7 @@ import styles from '../Styles';
 
 function LandingPage({ navigation }) {
     return (  
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Background />
 
             <View style={styles.content}>
@@ -19,11 +19,11 @@ function LandingPage({ navigation }) {
                     <Text style={styles.buttonText}>{localize('start') + ' 💪'}</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Parent')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ParentLogin')}>
                     <Text style={styles.buttonTextSmaller}>{localize('parent-zone') + ' 🔐'}</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
