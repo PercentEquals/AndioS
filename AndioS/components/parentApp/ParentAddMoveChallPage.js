@@ -26,7 +26,7 @@ function ParentAddMoveChallPage() {
         setShow(false);
 
         if (currentDate.getTime() < new Date().getTime()) { 
-            alert('Date must be in the future');
+            alert(localize('error-date'));
             return;
         }
 
@@ -35,13 +35,13 @@ function ParentAddMoveChallPage() {
 
     const onAddChallenge = async () => {
         if (!title || !steps || !date || !reward) {
-            alert('Please fill all the fields');
+            alert(localize('fill-all-fields'));
             return;
         }
 
         await addChallenge(title, steps, date, reward);
 
-        alert('Challenge added');
+        alert(localize('add-challenge-success'));
     }
 
     return (  

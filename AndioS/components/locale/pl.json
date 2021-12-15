@@ -21,6 +21,8 @@
     "add-challenge": "Dodaj wyzwanie",
     "reward": "Nagroda",
     "choose-date": "Wybierz date",
+    "fill-all-fields": "Wypełnij wszystkie pola",
+    "add-challenge-success": "Wyzwanie dodane pomyślnie",
     "error-date": "Data musi być późniejsza niż dzisiejsza",
     "password-confirm": "Czy jesteś pewny że chcesz takie hasło?\nPóźniejsza zmiana będzie możliwa jedynie poprzez reinstalację aplikacji!",
     "no-challenges-header": "Brak nowych wyzwań",

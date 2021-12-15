@@ -9,4 +9,17 @@ describe('<ParentPage />', () => {
             <ParentPage />
         );
     });
+
+    it('onPress works', () => {
+        const onPressEvent = jest.fn();
+        const navigation = { navigate: onPressEvent };
+
+        const wrapper = shallow(<ParentPage navigation={navigation} />);
+
+        wrapper.findWhere((n) => n.prop('onPress')).forEach(element => {
+            element.props().onPress();
+        });
+
+        expect(onPressEvent).toHaveBeenCalled();
+    });
 });

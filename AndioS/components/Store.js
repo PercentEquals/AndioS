@@ -5,6 +5,11 @@ function datesDayDiff(date1, date2) {
     return Math.ceil(diff / (1000 * 60 * 60 * 24));
 }
 
+function datesHourDiff(date1, date2) {
+    let diff = date1 - date2;
+    return Math.ceil(diff / (1000 * 60 * 60));
+}
+
 async function addChallenge(title, steps, date, reward) {
     let challenges = await getChallenges();
 
@@ -44,4 +49,5 @@ export {
     addChallenge,
     getChallenges,
     datesDayDiff,
+    datesHourDiff,
 }

@@ -22,6 +22,8 @@
     "reward": "Reward",
     "choose-date": "Choose date",
     "error-date": "Date must be in the future",
+    "fill-all-fields": "Please fill all the fields",
+    "add-challenge-success": "Challenge added successfully",
     "password-confirm": "Are You sure that this is Your password?\nIt can only be changed by reinstalling the app!",
     "no-challenges-header": "No new challenges",
     "no-challenges-subheader": "Try asking your parents for new one!"

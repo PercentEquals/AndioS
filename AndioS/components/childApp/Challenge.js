@@ -2,17 +2,14 @@ import React, { useEffect } from 'react';
 
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
+import { datesHourDiff } from '../Store'
+
 import localize from '../locale/Localization';
 import styles from '../Styles';
 
 function Challenge({ challenge }) {
     const [remaining, setRemaining] = React.useState(null);
     const [followingDate, setFollowingDate] = React.useState(null);
-
-    function datesHourDiff(date1, date2) {
-        let diff = date1 - date2;
-        return Math.ceil(diff / (1000 * 60 * 60));
-    }
 
     useEffect(() => {
         for (const date of challenge.dates) {
