@@ -1,25 +1,57 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import localize from '../locale/Localization';
 import styles from '../Styles';
 
-function Challenge({ title }) {
+function Challenge({ challenge }) {
+    const [remaining, setRemaining] = React.useState(null);
+    const [followingDate, setFollowingDate] = React.useState(null);
+
+    function datesHourDiff(date1, date2) {
+        let diff = date1 - date2;
+        return Math.ceil(diff / (1000 * 60 * 60));
+    }
+
+    useEffect(() => {
+        for (const date of challenge.dates) {
+            let today = new Date().getTime();
+            let challengeDate = new Date(date.date).getTime();
+
+            if (remaining === null && date.done === false && today <= challengeDate) {
+                setRemaining(datesHourDiff(challengeDate, today));
+                setFollowingDate(date.date);
+                return;
+            }
+        };
+    });
+
     return (  
         <View style={challengeStyles.challenge}>
             <View style={challengeStyles.wrapText}>
-                <Text style={challengeStyles.text}>{title}</Text>
+                <Text style={challengeStyles.text}>{challenge.title}</Text>
             </View>
             <TouchableOpacity style={challengeStyles.button} onPress={() => {}}>
                 <Text style={challengeStyles.buttonText}>START 🔥</Text>
             </TouchableOpacity>
 
-            <Text style={challengeStyles.timer}>⏱️ {localize('remaining-time')}: 2h</Text>
+            <Text style={challengeStyles.timer}>⏱️ {localize('remaining-time')}: {remaining}h</Text>
             <View style={challengeStyles.boxes}>
-                <Text style={[challengeStyles.boxText, challengeStyles.boxTextCompleted]}>🏅</Text>
-                <Text style={[challengeStyles.boxText, challengeStyles.boxTextFailed]}>💀</Text>
-                <Text style={challengeStyles.boxText}>⏱️</Text>
+                {
+                    challenge.dates.map(date => {
+                        let today = new Date().getTime();
+                        let challengeDate = new Date(date.date).getTime();
+
+                        if (today <= challengeDate) {
+                            return (<Text style={challengeStyles.boxText} key={date.date}>{date.date === followingDate && '⏱️'}</Text>)
+                        } else if (date.done) {
+                            return (<Text style={[challengeStyles.boxText, challengeStyles.boxTextCompleted]} key={date.date}>🏅</Text>)
+                        } else {
+                            return (<Text style={[challengeStyles.boxText, challengeStyles.boxTextFailed]} key={date.date}>💀</Text>)
+                        }
+                    })
+                }
             </View>
         </View>
     );

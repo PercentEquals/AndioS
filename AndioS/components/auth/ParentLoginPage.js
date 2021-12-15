@@ -74,7 +74,7 @@ function ParentPage({ navigation }) {
 
             <View style={styles.content}>
                 {expectedPassword.length === 0 && <Text style={styles.header}>{localize('register')} 🔒</Text>}
-                {expectedPassword.length >= 0 && <Text style={styles.header}>{localize('login')} 🔒</Text>}
+                {expectedPassword.length > 0 && <Text style={styles.header}>{localize('login')} 🔒</Text>}
 
                 <View style={{backgroundColor: '#FFF', padding: 20, borderRadius: 5}}>
                     <KeycodeInput
