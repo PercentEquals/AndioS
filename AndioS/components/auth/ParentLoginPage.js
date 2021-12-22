@@ -21,7 +21,7 @@ function ParentPage({ navigation }) {
         const digest = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, password);
         setExpectedPassword(digest);
 
-        await AsyncStorage.setItem('@expectedPassword', expectedPassword);
+        await AsyncStorage.setItem('expectedPassword', digest);
         navigation.navigate('Parent');
     }
 
@@ -33,7 +33,7 @@ function ParentPage({ navigation }) {
     }
 
     async function getExpectedPassword() {
-        const expectedPassword = await AsyncStorage.getItem('@expectedPassword');
+        const expectedPassword = await AsyncStorage.getItem('expectedPassword');
         if (expectedPassword) {
             setExpectedPassword(expectedPassword);
         }

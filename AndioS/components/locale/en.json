@@ -24,7 +24,11 @@
     "error-date": "Date must be in the future",
     "fill-all-fields": "Please fill all the fields",
     "add-challenge-success": "Challenge added successfully",
+    "rewards": "Rewards",
     "password-confirm": "Are You sure that this is Your password?\nIt can only be changed by reinstalling the app!",
     "no-challenges-header": "No new challenges",
-    "no-challenges-subheader": "Try asking your parents for new one!"
+    "no-challenges-subheader": "Try asking your parents for new one!",
+    "notification-title": "Challenge is waiting for You!",
+    "notification-body-pre": "You have to do ",
+    "notification-body-post": " steps today!"
 }

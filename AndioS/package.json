@@ -8,9 +8,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.15.0",
+    "@react-native-community/datetimepicker": "3.5.2",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/stack": "^6.0.11",
     "expo": "~42.0.1",
+    "expo-crypto": "~9.2.0",
     "expo-linear-gradient": "~9.2.0",
     "expo-localization": "~10.2.0",
     "expo-status-bar": "~1.0.4",
@@ -23,9 +26,8 @@
     "react-native-reanimated": "~2.2.0",
     "react-native-screens": "~3.4.0",
     "react-native-web": "^0.17.5",
-    "@react-native-async-storage/async-storage": "~1.15.0",
-    "expo-crypto": "~9.2.0",
-    "@react-native-community/datetimepicker": "3.5.2"
+    "expo-notifications": "~0.12.3",
+    "expo-permissions": "~12.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

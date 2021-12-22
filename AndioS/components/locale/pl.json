@@ -21,10 +21,14 @@
     "add-challenge": "Dodaj wyzwanie",
     "reward": "Nagroda",
     "choose-date": "Wybierz date",
+    "error-date": "Data musi być późniejsza niż dzisiejsza",
     "fill-all-fields": "Wypełnij wszystkie pola",
     "add-challenge-success": "Wyzwanie dodane pomyślnie",
-    "error-date": "Data musi być późniejsza niż dzisiejsza",
+    "rewards": "Nagrody",
     "password-confirm": "Czy jesteś pewny że chcesz takie hasło?\nPóźniejsza zmiana będzie możliwa jedynie poprzez reinstalację aplikacji!",
     "no-challenges-header": "Brak nowych wyzwań",
-    "no-challenges-subheader": "Poproś rodziców o dodanie kolejnych!"
+    "no-challenges-subheader": "Poproś rodziców o dodanie kolejnych!",
+    "notification-title": "Wyzwanie czeka na ciebie!",
+    "notification-body-pre": "Zostało ci jeszcze ",
+    "notification-body-post": " kroków do wykonania dzisiaj!"
 }

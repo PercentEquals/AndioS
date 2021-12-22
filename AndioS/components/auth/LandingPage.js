@@ -19,6 +19,10 @@ function LandingPage({ navigation }) {
                     <Text style={styles.buttonText}>{localize('start') + ' 💪'}</Text>
                 </TouchableOpacity>
 
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ChildrenReward')}>
+                    <Text style={styles.buttonTextSmaller}>{localize('rewards') + ' 🏆'}</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ParentLogin')}>
                     <Text style={styles.buttonTextSmaller}>{localize('parent-zone') + ' 🔐'}</Text>
                 </TouchableOpacity>
