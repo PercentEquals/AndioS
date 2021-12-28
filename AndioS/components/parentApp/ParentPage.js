@@ -12,7 +12,7 @@ function ParentPage({ navigation }) {
         <SafeAreaView style={styles.container}>
             <Background />
 
-            <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <TouchableOpacity style={styles.button} onPress={() => { navigation.navigate('ParentChallangePage') }}>
                     <Text style={styles.buttonTextSmaller}>{localize('challenge-list')} 📖</Text>
             </TouchableOpacity>
 

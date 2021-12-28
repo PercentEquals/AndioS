@@ -14,6 +14,8 @@ import ParentLoginPage from './components/auth/ParentLoginPage'
 import ParentPage from './components/parentApp/ParentPage';
 import ParentAddMoveChallPage from './components/parentApp/ParentAddMoveChallPage';
 import ChildrenRewardPage from './components/childApp/ChildrenRewardPage';
+import ParentChallangePage from './components/parentApp/ParentChallangePage';
+import ChildrenClaimPage from './components/childApp/ChildrenClaimPage';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +23,7 @@ export default function App() {
     Notifications.setNotificationHandler({
         handleNotification: async () => ({
             shouldShowAlert: true,
-            shouldPlaySound: true,
+            shouldPlaySound: false,
             shouldSetBadge: false,
         }),
     });
@@ -34,9 +36,11 @@ export default function App() {
                 <Stack.Screen name="Landing" component={LandingPage} options={{headerShown: true, title: 'AndioS' }} />
                 <Stack.Screen name="Children" component={ChildrenPage} options={{headerShown: true, title: '🧒 ' + localize('children-page') }} />
                 <Stack.Screen name="ChildrenReward" component={ChildrenRewardPage} options={{headerShown: true, title: '🏆 ' + localize('rewards') }} />
+                <Stack.Screen name="ChildrenClaim" component={ChildrenClaimPage} options={{headerShown: true, title: '🏆 ' + localize('rewards') }} />
                 <Stack.Screen name="ParentLogin" component={ParentLoginPage} options={{headerShown: true, title: '👪 ' + localize('parent-page') + ' - ' + localize('login') }} />
                 <Stack.Screen name="Parent" component={ParentPage} options={{headerShown: true, title: '👪 ' + localize('parent-page') }} />
                 <Stack.Screen name="ParentAddMoveChall" component={ParentAddMoveChallPage} options={{headerShown: true, title: '🏃 ' + localize('add-movement-challenge') }} />
+                <Stack.Screen name="ParentChallangePage" component={ParentChallangePage} options={{headerShown: true, title: '📖 ' + localize('challenge-list') }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -43,4 +43,16 @@ describe('<Challenge />', () => {
 
         const wrapper = mount(<Challenge challenge={challengeMock} />);
     });
+
+    it('renders with button', () => {
+        const onPressEvent = jest.fn();
+
+        const wrapper = shallow(<Challenge challenge={challengeMock} buttonText={"test"} onPress={onPressEvent} />);
+
+        wrapper.findWhere((n) => n.prop('onPress')).forEach(element => {
+            element.props().onPress();
+        });
+
+        expect(onPressEvent).toHaveBeenCalled();
+    });
 });

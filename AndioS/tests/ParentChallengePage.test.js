@@ -1,19 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import ChildrenPage from '../components/childApp/ChildrenPage';
+import ParentChallangePage from '../components/parentApp/ParentChallangePage';
 
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({adapter: new Adapter()});
 
-describe('<ChildrenPage />', () => {
+describe('<ParentChallangePage />', () => {
     it('renders', () => {
         const component = renderer.create(
-            <ChildrenPage />
+            <ParentChallangePage />
         );
 
-        const wrapper = mount(<ChildrenPage />);
+        const wrapper = mount(<ParentChallangePage />);
     });
 });

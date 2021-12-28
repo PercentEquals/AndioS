@@ -20,8 +20,10 @@ describe('<LandingPage />', () => {
 
         const wrapper = shallow(<LandingPage navigation={navigation} />);
 
-        wrapper.findWhere((n) => n.prop('onPress')).first().props().onPress();
-        wrapper.findWhere((n) => n.prop('onPress')).last().props().onPress();
-        expect(onPressEvent).toHaveBeenCalledTimes(2);
+        wrapper.findWhere((n) => n.prop('onPress')).forEach(element => {
+            element.props().onPress();
+        });
+
+        expect(onPressEvent).toHaveBeenCalledTimes(3);
     })
 });

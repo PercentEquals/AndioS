@@ -12,6 +12,11 @@ function datesHourDiff(date1, date2) {
     return Math.ceil(diff / (1000 * 60 * 60));
 }
 
+const datesAreOnSameDay = (first, second) =>
+    first.getFullYear() === second.getFullYear() &&
+    first.getMonth() === second.getMonth() &&
+    first.getDate() === second.getDate();
+
 async function addChallenge(title, steps, date, reward) {
     let challenges = await getChallenges();
 
@@ -64,10 +69,19 @@ async function modifyChallenge(challenge) {
     await AsyncStorage.setItem('challenges', JSON.stringify(challenges));
 }
 
+async function removeChallenge(challenge) {
+    let challenges = await getChallenges();
+    let index = challenges.findIndex(c => c.id === challenge.id);
+    challenges.splice(index, 1);
+    await AsyncStorage.setItem('challenges', JSON.stringify(challenges));
+}
+
 export {
     addChallenge,
     getChallenges,
     modifyChallenge,
+    removeChallenge,
     datesDayDiff,
     datesHourDiff,
+    datesAreOnSameDay
 }

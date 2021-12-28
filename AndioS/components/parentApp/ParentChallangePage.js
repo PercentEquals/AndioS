@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 
-import { Text, View, ScrollView, SafeAreaView } from 'react-native';
+import { Text, View, ScrollView, SafeAreaView, Alert } from 'react-native';
 
 import localize from '../locale/Localization';
 import Background from '../Background';
 
-import { getChallenges, modifyChallenge } from '../Store'
+import { getChallenges, modifyChallenge, removeChallenge } from '../Store'
 
 import styles from '../Styles';
-import Challenge from './Challenge';
+import Challenge from '../childApp/Challenge';
 
-function ChildrenPage() {
+function ParentChallangePage({ navigation }) {
     const [challenges, setChallenges] = React.useState([]);
     const [remaining, setRemaining] = React.useState(0);
 
@@ -40,18 +40,20 @@ function ChildrenPage() {
             <View style={styles.content}>
                 <Text style={styles.header}>{localize('challenges')} 🏆</Text>
 
-
-                {   remaining === 0 && 
-                    <>
-                        <Text style={styles.subheader}>{localize('no-challenges-header')} 😕</Text>
-                        <Text style={styles.subheader}>{localize('no-challenges-subheader')}</Text>
-                    </>
-                }
-
                 <ScrollView>
                     {
-                        remaining !== 0 && challenges.map(challenge => {
-                            return (!challenge.finished && <Challenge key={challenge.id} challenge={challenge} buttonText={localize('start') + " 🔥"} />)
+                        challenges.map(challenge => {
+                            if (new Date(challenge.dates[0].date).getTime() > new Date().getTime()) {
+                                return <Challenge key={challenge.id} challenge={challenge} buttonText={localize('cancel') + " ❌"} onPress={() => { 
+                                    Alert.alert(localize('are-you-sure'), "", [
+                                        { text: localize('yes'), onPress: async () => { await removeChallenge(challenge); navigation.pop() }},
+                                        { text: localize('no'), onPress: () => {}},
+                                    ]);
+                                }} />
+                            }
+                            else {
+                                return <Challenge key={challenge.id} challenge={challenge} />
+                            }
                         })
                     }
                 </ScrollView>
@@ -60,4 +62,4 @@ function ChildrenPage() {
     );
 }
 
-export default ChildrenPage;
+export default ParentChallangePage;

@@ -10,7 +10,7 @@ import { getChallenges, modifyChallenge } from '../Store'
 import styles from '../Styles';
 import Challenge from './Challenge';
 
-function ChildrenRewardPage() {
+function ChildrenRewardPage({ navigation }) {
     const [challenges, setChallenges] = React.useState([]);
 
     useEffect(() => {
@@ -28,9 +28,33 @@ function ChildrenRewardPage() {
 
                 <ScrollView>
                     {
-                        challenges.map(challenge =>
-                            challenge.finished && <Challenge key={challenge.id} challenge={challenge}  />
-                        )
+                        challenges.map(challenge => {
+                            let finishedCount = 0;
+                            let count = 0
+                            let rewarded = false;
+
+                            challenge.dates.forEach(date => {
+                                finishedCount += date.finished ? 1 : 0;
+                                count += 1;
+                            });
+
+                            if (finishedCount > 0.75 * count) {
+                                rewarded = true;
+                            }
+
+                            if (rewarded) {
+                                return (
+                                    challenge.finished && <Challenge key={challenge.id} challenge={challenge} buttonText={localize('claim') + " 🥇"} onPress={() => {
+                                        navigation.navigate('ChildrenClaim', { challenge });
+                                    }} />
+                                )
+                            }
+                            else {
+                                return (
+                                    challenge.finished && <Challenge key={challenge.id} challenge={challenge} buttonText={localize('claim-fail') + " 😔"} />
+                                )
+                            }
+                        })
                     }
                 </ScrollView>
             </View>

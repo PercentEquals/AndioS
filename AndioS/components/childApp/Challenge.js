@@ -7,7 +7,7 @@ import { datesHourDiff } from '../Store'
 import localize from '../locale/Localization';
 import styles from '../Styles';
 
-function Challenge({ challenge }) {
+function Challenge({ challenge, buttonText, onPress }) {
     const [remaining, setRemaining] = React.useState(null);
     const [followingDate, setFollowingDate] = React.useState(null);
 
@@ -29,11 +29,15 @@ function Challenge({ challenge }) {
             <View style={challengeStyles.wrapText}>
                 <Text style={challengeStyles.text}>{challenge.title}</Text>
             </View>
-            <TouchableOpacity style={challengeStyles.button} onPress={() => {}}>
-                <Text style={challengeStyles.buttonText}>START 🔥</Text>
-            </TouchableOpacity>
+            
+            {
+                buttonText &&
+                <TouchableOpacity style={challengeStyles.button} onPress={onPress}>
+                    <Text style={challengeStyles.buttonText}>{buttonText}</Text>
+                </TouchableOpacity>
+            }
 
-            <Text style={challengeStyles.timer}>⏱️ {localize('remaining-time')}: {remaining}h</Text>
+            {remaining && <Text style={challengeStyles.timer}>⏱️ {localize('remaining-time')}: {remaining}h</Text>}
             <View style={challengeStyles.boxes}>
                 {
                     challenge.dates.map(date => {

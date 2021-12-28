@@ -34,7 +34,7 @@ function ParentAddMoveChallPage() {
     };
 
     const onAddChallenge = async () => {
-        if (!title || !steps || !date || !reward) {
+        if (!(title.length > 0) || !steps || !date || !reward || isNaN(steps)) {
             alert(localize('fill-all-fields'));
             return;
         }

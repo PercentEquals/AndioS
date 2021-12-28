@@ -2,13 +2,20 @@ import React from 'react';
 import { Alert } from 'react-native';
 import renderer from 'react-test-renderer';
 
+import Enzyme, {mount} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
 import ParentLoginPage from '../components/auth/ParentLoginPage';
+
+Enzyme.configure({adapter: new Adapter()});
 
 describe('<ParentLoginPage />', () => {
     it('renders', () => {
         const component = renderer.create(
             <ParentLoginPage />
         );
+
+        const wrapper = mount(<ParentLoginPage />);
     });
 
     it('returns as nothing is typed', () => {
@@ -51,6 +58,10 @@ describe('<ParentLoginPage />', () => {
         expect(onPressEvent).toHaveBeenCalledTimes(1);
 
         // LOGIN
+        wrapper.findWhere((n) => n.prop('onPress')).first().props().onPress();
+
+        // BAD PASSWORD
+        wrapper.findWhere((n) => n.prop('onChange')).first().props().onChange('1122');
         wrapper.findWhere((n) => n.prop('onPress')).first().props().onPress();
     });
 
