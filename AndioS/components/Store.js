@@ -12,10 +12,11 @@ function datesHourDiff(date1, date2) {
     return Math.ceil(diff / (1000 * 60 * 60));
 }
 
-const datesAreOnSameDay = (first, second) =>
-    first.getFullYear() === second.getFullYear() &&
+function datesAreOnSameDay (first, second) {
+    return first.getFullYear() === second.getFullYear() &&
     first.getMonth() === second.getMonth() &&
     first.getDate() === second.getDate();
+}
 
 async function addChallenge(title, steps, date, reward) {
     let challenges = await getChallenges();
@@ -34,7 +35,7 @@ async function addChallenge(title, steps, date, reward) {
                 title: '🏆 ' + localize('notification-title'),
                 body: localize('notification-body-pre') + day_step + localize('notification-body-post'),
             },
-            trigger: { seconds: datesHourDiff(date, today) * 3600 },
+            trigger: { seconds: datesHourDiff(date, today) * 3600 - 43200 },
         });
 
         dates.push({

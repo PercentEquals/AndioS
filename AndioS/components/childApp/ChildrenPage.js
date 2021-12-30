@@ -10,7 +10,7 @@ import { getChallenges, modifyChallenge } from '../Store'
 import styles from '../Styles';
 import Challenge from './Challenge';
 
-function ChildrenPage() {
+function ChildrenPage({navigation}) {
     const [challenges, setChallenges] = React.useState([]);
     const [remaining, setRemaining] = React.useState(0);
 
@@ -51,7 +51,9 @@ function ChildrenPage() {
                 <ScrollView>
                     {
                         remaining !== 0 && challenges.map(challenge => {
-                            return (!challenge.finished && <Challenge key={challenge.id} challenge={challenge} buttonText={localize('start') + " 🔥"} />)
+                            return (!challenge.finished && <Challenge key={challenge.id} challenge={challenge} buttonText={localize('start') + " 🔥"} onPress={ () => {
+                                navigation.navigate('Challenge', { challenge: challenge });
+                            }} />)
                         })
                     }
                 </ScrollView>
