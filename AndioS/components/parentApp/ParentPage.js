@@ -17,12 +17,8 @@ function ParentPage({ navigation }) {
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.button, {borderRadius: 10}]} onPress={() => { navigation.navigate('ParentAddMoveChall') }}>
-                    <Text style={{fontSize: 40, padding: 20}}>🏃</Text>
-                    <Text style={styles.buttonTextSmaller}>{localize('add-movement-challenge')}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={() => {}}>
-                    <Text style={styles.buttonTextSmaller}>{localize('add-custom-challenge')} ➕</Text>
+                    <Text style={{fontSize: 40, padding: 20}}>➕</Text>
+                    <Text style={styles.buttonTextSmaller}>{localize('add-challenge')}</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );

@@ -38,5 +38,8 @@
     "no-challenges-subheader": "Try asking your parents for new one!",
     "notification-title": "Challenge is waiting for You!",
     "notification-body-pre": "You have to do ",
-    "notification-body-post": " today!"
+    "notification-body-post": " today!",
+    "click-me-complete": "Click me if You have completed a challenge!",
+    "you-need-to-wait": "You need to wait ",
+    "hours": "hours"
 }

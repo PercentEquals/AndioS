@@ -38,5 +38,8 @@
     "no-challenges-subheader": "Poproś rodziców o dodanie kolejnych!",
     "notification-title": "Wyzwanie czeka na ciebie!",
     "notification-body-pre": "Zostało ci jeszcze ",
-    "notification-body-post": " do wykonania dzisiaj!"
+    "notification-body-post": " do wykonania dzisiaj!",
+    "click-me-complete": "Kliknij mnie, jeżeli skończyłeś wykonywać zadanie!",
+    "you-need-to-wait": "Musisz poczekać ",
+    "hours": "godzin"
 }

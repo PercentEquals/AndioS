@@ -17,20 +17,18 @@ beforeEach(() => {
         dates: [
             {
                 date: new Date(2020, 1, 1),
-                chall: '10',
                 done: false,
             },
             {
                 date: new Date(2020, 1, 1),
-                chall: '10',
                 done: true,
             },
             {
                 date: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-                chall: '10',
                 done: false,
             }
         ],
+        chall: 'chall',
         reward: 10,
     }
 });

@@ -38,7 +38,6 @@ async function addChallenge(title, chall, date, reward) {
 
         dates.push({
             date: new Date(today),
-            chall: chall,
             done: false,
         });
     }
@@ -56,6 +55,7 @@ async function addChallenge(title, chall, date, reward) {
         title: title,
         dates: dates,
         reward: reward,
+        chall: chall,
         finished: false,
         videourl: null,
     });
