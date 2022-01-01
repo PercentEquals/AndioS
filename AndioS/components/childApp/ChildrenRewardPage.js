@@ -34,7 +34,7 @@ function ChildrenRewardPage({ navigation }) {
                             let rewarded = false;
 
                             challenge.dates.forEach(date => {
-                                finishedCount += date.finished ? 1 : 0;
+                                finishedCount += date.done ? 1 : 0;
                                 count += 1;
                             });
 

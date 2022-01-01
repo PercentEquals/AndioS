@@ -31,9 +31,9 @@ function ChallengePage({ route, navigation }) {
     }, []);
 
     const finishChall = async () => {
-        challenge.dates.find(dates =>
-            new Date(dates.date).getTime() > new Date().getTime() && dates.finished === false
-        ).finished = true;
+        challenge.dates.find(date =>
+            new Date(date.date).getTime() > new Date().getTime() && date.done === false
+        ).done = true;
         await modifyChallenge(challenge);
 
         alert(localize('challenge-finished'));

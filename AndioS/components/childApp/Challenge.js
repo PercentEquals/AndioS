@@ -44,13 +44,14 @@ function Challenge({ challenge, buttonText, onPress }) {
                         let today = new Date().getTime();
                         let challengeDate = new Date(date.date).getTime();
 
-                        if (today <= challengeDate) {
-                            return (<Text style={challengeStyles.boxText} key={date.date}>{date.date === followingDate && '⏱️'}</Text>)
-                        } else if (date.done) {
+                        if (date.done) {
                             return (<Text style={[challengeStyles.boxText, challengeStyles.boxTextCompleted]} key={date.date}>🏅</Text>)
-                        } else {
+                        } else if (!date.done && today > challengeDate) {
                             return (<Text style={[challengeStyles.boxText, challengeStyles.boxTextFailed]} key={date.date}>💀</Text>)
                         }
+                        else if (today <= challengeDate) {
+                            return (<Text style={challengeStyles.boxText} key={date.date}>{date.date === followingDate && '⏱️'}</Text>)
+                        } 
                     })
                 }
             </View>

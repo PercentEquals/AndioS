@@ -25,6 +25,10 @@ function ChildrenPage({navigation}) {
                         challenge.finished = true;
                         modifyChallenge(challenge);
                     }
+                    else if (challenge.dates[challenge.dates.length - 1].done) {
+                        challenge.finished = true;
+                        modifyChallenge(challenge);
+                    }
                     else {
                         setRemaining(remaining + 1);
                     }
