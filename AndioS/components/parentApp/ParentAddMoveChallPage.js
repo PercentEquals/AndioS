@@ -13,7 +13,7 @@ import styles from '../Styles';
 
 function ParentAddMoveChallPage() {
     const [title, changeTitle] = React.useState('');
-    const [steps, changeSteps] = React.useState(null);
+    const [chall, changeChall] = React.useState('');
 
     const [date, setDate] = React.useState(new Date(new Date().getTime() + 24 * 60 * 60 * 1000));
     const [show, setShow] = React.useState(false);
@@ -34,12 +34,12 @@ function ParentAddMoveChallPage() {
     };
 
     const onAddChallenge = async () => {
-        if (!(title.length > 0) || !steps || !date || !reward || isNaN(steps)) {
+        if (!(title.length > 0) || !chall || !date || !reward) {
             alert(localize('fill-all-fields'));
             return;
         }
 
-        await addChallenge(title, steps, date, reward);
+        await addChallenge(title, chall, date, reward);
 
         alert(localize('add-challenge-success'));
     }
@@ -49,7 +49,7 @@ function ParentAddMoveChallPage() {
             <Background />
 
             <TextInput style={styles.input} onChangeText={changeTitle} value={title} placeholder={localize('title')} />
-            <TextInput style={styles.input} onChangeText={changeSteps} value={steps} keyboardType='numeric' placeholder={localize('steps')} />
+            <TextInput style={styles.input} onChangeText={changeChall} value={chall} placeholder={localize('challenge')} />
             <TouchableOpacity onPress={() => setShow(true)}>
                 <Text style={styles.input}>{localize('choose-date')}: {date.toLocaleDateString()}</Text>
             </TouchableOpacity>

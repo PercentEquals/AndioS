@@ -18,13 +18,11 @@ function datesAreOnSameDay (first, second) {
     first.getDate() === second.getDate();
 }
 
-async function addChallenge(title, steps, date, reward) {
+async function addChallenge(title, chall, date, reward) {
     let challenges = await getChallenges();
 
     let today = new Date();
     let dates = [];
-
-    let day_step = steps / datesDayDiff(date, today);
 
     while (today.getTime() <= date.getTime()) {
         today.setDate(today.getDate() + 1);
@@ -33,24 +31,33 @@ async function addChallenge(title, steps, date, reward) {
             identifier: 'challenge#' + today.getTime(),
             content: {
                 title: '🏆 ' + localize('notification-title'),
-                body: localize('notification-body-pre') + day_step + localize('notification-body-post'),
+                body: localize('notification-body-pre') + '"' + chall + '"' + localize('notification-body-post'),
             },
-            trigger: { seconds: datesHourDiff(date, today) * 3600 - 43200 },
+            trigger: { seconds: datesHourDiff(date, today) * 60 - 43200 },
         });
 
         dates.push({
             date: new Date(today),
-            steps: day_step,
+            chall: chall,
             done: false,
         });
     }
     
+    await Notifications.scheduleNotificationAsync({
+        identifier: 'challenge-added#' + today.getTime(),
+        content: {
+            title: '🏆 ' + localize('add-challenge-success'),
+        },
+        trigger: { seconds: 1 },
+    });
+
     challenges.push({
         id: Date.now(),
         title: title,
         dates: dates,
         reward: reward,
         finished: false,
+        videourl: null,
     });
     await AsyncStorage.setItem('challenges', JSON.stringify(challenges));
 }
