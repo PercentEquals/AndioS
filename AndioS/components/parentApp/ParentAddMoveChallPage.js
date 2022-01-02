@@ -3,7 +3,9 @@ import React from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
+
 import * as DocumentPicker from 'expo-document-picker';
+import * as FileSystem from 'expo-file-system';
 
 import { addChallenge } from '../Store'
 
@@ -12,7 +14,7 @@ import Background from '../Background';
 
 import styles from '../Styles';
 
-function ParentAddMoveChallPage() {
+function ParentAddMoveChallPage({navigation}) {
     const [title, changeTitle] = React.useState('');
     const [chall, changeChall] = React.useState('');
 
@@ -42,9 +44,22 @@ function ParentAddMoveChallPage() {
             return;
         }
 
-        await addChallenge(title, chall, date, reward, chosenFile);
+        try {
 
-        alert(localize('add-challenge-success'));
+            if (chosenFile !== null && chosenFile.type !== 'cancel') {
+                const fileBuffor = `${FileSystem.documentDirectory}AndioS/${chosenFile.name}`;
+                //const realUri = chosenFile.uri.replace('%40', '@').replace('%2F', '/');
+                await FileSystem.copyAsync({ from: `file:///${chosenFile.uri}`, to: `file:///${fileBuffor}` });
+                chosenFile.realUri = fileBuffor;
+            }
+
+            await addChallenge(title, chall, date, reward, chosenFile);
+
+            alert(localize('add-challenge-success'));
+
+        } catch (e) { 
+            alert(e);
+        }
     }
 
     return (  
@@ -58,8 +73,8 @@ function ParentAddMoveChallPage() {
             </TouchableOpacity>
             {show && <DateTimePicker testID="dateTimePicker" value={date} mode='date' is24Hour={true} display="default" onChange={onCalendarChange} />}
             <TextInput style={styles.input} onChangeText={changeReward} value={reward} placeholder={localize('reward')} />
-            <TouchableOpacity onPress={async () => DocumentPicker.getDocumentAsync().then(data => setChosenFile(data))}>
-                <Text style={styles.input}>{chosenFile ? chosenFile.name : localize('add-file-reward')}</Text>
+            <TouchableOpacity onPress={async () => { DocumentPicker.getDocumentAsync().then(data => setChosenFile(data)) }}>
+                <Text style={styles.input}>{(chosenFile !== null && chosenFile.type !== 'cancel') ? chosenFile.name : localize('add-file-reward')}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={async () => onAddChallenge()}>
                 <Text style={[styles.input, {textAlign: 'center', backgroundColor: '#000', color: '#FFF'}]}>{localize('add-challenge')} ➕</Text>

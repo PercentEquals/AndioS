@@ -14,7 +14,10 @@ describe('<ChildrenClaimPage />', () => {
                         reward: '30', 
                         dates: [{
                             date: new Date(2020, 1, 1).toISOString(),
-                        }]
+                        }],
+                        file: {
+                            realUri: '',
+                        }
                     }
                 }
             }} />

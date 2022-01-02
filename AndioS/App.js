@@ -17,6 +17,7 @@ import ChildrenRewardPage from './components/childApp/ChildrenRewardPage';
 import ParentChallangePage from './components/parentApp/ParentChallangePage';
 import ChildrenClaimPage from './components/childApp/ChildrenClaimPage';
 import ChallengePage from './components/childApp/ChallengePage';
+import ParentCameraPage from './components/parentApp/ParentCameraPage';
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,7 @@ export default function App() {
                 <Stack.Screen name="Challenge" component={ChallengePage} options={{headerShown: true, title: '🥇 ' + localize('challenge') }} />
                 <Stack.Screen name="ParentLogin" component={ParentLoginPage} options={{headerShown: true, title: '👪 ' + localize('parent-page') + ' - ' + localize('login') }} />
                 <Stack.Screen name="Parent" component={ParentPage} options={{headerShown: true, title: '👪 ' + localize('parent-page') }} />
+                <Stack.Screen name="ParentCamera" component={ParentCameraPage} options={{headerShown: true, title: '🏃 ' + localize('add-movement-challenge') }} />
                 <Stack.Screen name="ParentAddMoveChall" component={ParentAddMoveChallPage} options={{headerShown: true, title: '🏃 ' + localize('add-movement-challenge') }} />
                 <Stack.Screen name="ParentChallangePage" component={ParentChallangePage} options={{headerShown: true, title: '📖 ' + localize('challenge-list') }} />
             </Stack.Navigator>

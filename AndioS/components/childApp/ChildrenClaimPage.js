@@ -24,15 +24,11 @@ function ChildrenClaimPage({ route, navigation }) {
                 <View style={{backgroundColor: '#FFF', padding: 20, borderRadius: 5, marginTop: 5}}>
                     <Text style={{color: '#000', width: 200, fontSize: 20}}>{challenge.reward}</Text>
                 </View>
-                { challenge.file.uri.length > 0 &&
+                { challenge.file.realUri.length > 0 &&
                 <TouchableOpacity style={[styles.button, {borderRadius: 10, marginTop: 10}]} onPress={async () => { 
                     try {
-                        // const fileBuffor = `${FileSystem.documentDirectory}AndioS\buffer`;
-                        // console.log(fileBuffor)
-                        // await FileSystem.copyAsync({ from: `file:/${challenge.file.uri}`, to: fileBuffor });
-                        // console.log("test")
-                        // const cUri = await FileSystem.getContentUriAsync(fileBuffor);
-                        //await IntentLauncher.startActivityAsync('android.intent.action.VIEW', { data: challenge.file.uri }) 
+                        const cUri = await FileSystem.getContentUriAsync(`file:///${challenge.file.realUri}`);
+                        await IntentLauncher.startActivityAsync('android.intent.action.VIEW', { data: cUri }) 
                     } catch (e) {
                         alert('Error: ' + e);
                     }
