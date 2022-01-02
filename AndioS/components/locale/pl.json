@@ -33,6 +33,7 @@
     "challenge-finished": "Wyzwanie zakończone",
     "rewards": "Nagrody",
     "are-you-sure": "Czy jesteś pewien?",
+    "have-you-finished": "Czy jesteś pewien, że zakończyłeś wyzwanie?",
     "password-confirm": "Czy jesteś pewny że chcesz takie hasło?\nPóźniejsza zmiana będzie możliwa jedynie poprzez reinstalację aplikacji!",
     "no-challenges-header": "Brak nowych wyzwań",
     "no-challenges-subheader": "Poproś rodziców o dodanie kolejnych!",
@@ -41,5 +42,7 @@
     "notification-body-post": " do wykonania dzisiaj!",
     "click-me-complete": "Kliknij mnie, jeżeli skończyłeś wykonywać zadanie!",
     "you-need-to-wait": "Musisz poczekać ",
-    "hours": "godzin"
+    "hours": "godzin",
+    "add-file-reward": "Dodaj plik z nagrodą (opcjonalnie)",
+    "open-reward-file": "Otwórz plik z nagrodą"
 }

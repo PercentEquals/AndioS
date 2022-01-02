@@ -18,7 +18,7 @@ function datesAreOnSameDay (first, second) {
     first.getDate() === second.getDate();
 }
 
-async function addChallenge(title, chall, date, reward) {
+async function addChallenge(title, chall, date, reward, chosenFile) {
     let challenges = await getChallenges();
 
     let today = new Date();
@@ -58,6 +58,7 @@ async function addChallenge(title, chall, date, reward) {
         chall: chall,
         finished: false,
         videourl: null,
+        file: chosenFile
     });
     await AsyncStorage.setItem('challenges', JSON.stringify(challenges));
 }

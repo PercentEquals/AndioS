@@ -3,6 +3,7 @@ import React from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
+import * as DocumentPicker from 'expo-document-picker';
 
 import { addChallenge } from '../Store'
 
@@ -19,6 +20,8 @@ function ParentAddMoveChallPage() {
     const [show, setShow] = React.useState(false);
 
     const [reward, changeReward] = React.useState(null);
+
+    const [chosenFile, setChosenFile] = React.useState(null);
 
     const onCalendarChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -39,7 +42,7 @@ function ParentAddMoveChallPage() {
             return;
         }
 
-        await addChallenge(title, chall, date, reward);
+        await addChallenge(title, chall, date, reward, chosenFile);
 
         alert(localize('add-challenge-success'));
     }
@@ -55,6 +58,9 @@ function ParentAddMoveChallPage() {
             </TouchableOpacity>
             {show && <DateTimePicker testID="dateTimePicker" value={date} mode='date' is24Hour={true} display="default" onChange={onCalendarChange} />}
             <TextInput style={styles.input} onChangeText={changeReward} value={reward} placeholder={localize('reward')} />
+            <TouchableOpacity onPress={async () => DocumentPicker.getDocumentAsync().then(data => setChosenFile(data))}>
+                <Text style={styles.input}>{chosenFile ? chosenFile.name : localize('add-file-reward')}</Text>
+            </TouchableOpacity>
             <TouchableOpacity onPress={async () => onAddChallenge()}>
                 <Text style={[styles.input, {textAlign: 'center', backgroundColor: '#000', color: '#FFF'}]}>{localize('add-challenge')} ➕</Text>
             </TouchableOpacity>

@@ -32,7 +32,8 @@
     "add-challenge-success": "Challenge added successfully",
     "challenge-finished": "Challenge finished",
     "rewards": "Rewards",
-    "are-you-sure": "Are you sure?",
+    "are-you-sure": "Are You sure?",
+    "have-you-finished": "Are You sure that You have finished Your challange?",
     "password-confirm": "Are You sure that this is Your password?\nIt can only be changed by reinstalling the app!",
     "no-challenges-header": "No new challenges",
     "no-challenges-subheader": "Try asking your parents for new one!",
@@ -41,5 +42,7 @@
     "notification-body-post": " today!",
     "click-me-complete": "Click me if You have completed a challenge!",
     "you-need-to-wait": "You need to wait ",
-    "hours": "hours"
+    "hours": "hours",
+    "add-file-reward": "Add file reward (optional)",
+    "open-reward-file": "Open reward file"
 }
