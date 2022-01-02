@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text, View, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, SafeAreaView, TouchableOpacity, TextInput, Alert } from 'react-native';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -45,11 +45,10 @@ function ParentAddMoveChallPage({navigation}) {
         }
 
         try {
-
+            console.log(chosenFile);
             if (chosenFile !== null && chosenFile.type !== 'cancel') {
                 const fileBuffor = `${FileSystem.documentDirectory}AndioS/${chosenFile.name}`;
-                //const realUri = chosenFile.uri.replace('%40', '@').replace('%2F', '/');
-                await FileSystem.copyAsync({ from: `file:///${chosenFile.uri}`, to: `file:///${fileBuffor}` });
+                await FileSystem.copyAsync({ from: `file:///${chosenFile.uri.replace('file:///', '')}`, to: `file:///${fileBuffor.replace('file:///', '')}` });
                 chosenFile.realUri = fileBuffor;
             }
 
@@ -73,7 +72,26 @@ function ParentAddMoveChallPage({navigation}) {
             </TouchableOpacity>
             {show && <DateTimePicker testID="dateTimePicker" value={date} mode='date' is24Hour={true} display="default" onChange={onCalendarChange} />}
             <TextInput style={styles.input} onChangeText={changeReward} value={reward} placeholder={localize('reward')} />
-            <TouchableOpacity onPress={async () => { DocumentPicker.getDocumentAsync().then(data => setChosenFile(data)) }}>
+            <TouchableOpacity onPress={async () => { 
+                Alert.alert(localize('select'), "", [
+                    { text: localize('load-file'), onPress: async () => { 
+                        try {
+                            const file = await DocumentPicker.getDocumentAsync();
+                            setChosenFile(file);
+                        } catch (e) {
+                            alert(e);
+                        }
+                    }},
+                    { text: localize('take-photo'), onPress: () => {
+                        navigation.navigate('ParentCamera', { setChosenFile: (data) => { 
+                            data.type = 'accepted'; 
+                            data.name = 'AndioS_' + new Date().getTime() + '.jpg';
+                            setChosenFile(data);
+                        }});
+                    }},
+                ]);
+                
+            }}>
                 <Text style={styles.input}>{(chosenFile !== null && chosenFile.type !== 'cancel') ? chosenFile.name : localize('add-file-reward')}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={async () => onAddChallenge()}>

@@ -5,6 +5,9 @@ import { Text, View, ScrollView, SafeAreaView, TouchableOpacity } from 'react-na
 import localize from '../locale/Localization';
 import Background from '../Background';
 
+import * as FileSystem from 'expo-file-system';
+import * as IntentLauncher from 'expo-intent-launcher';
+
 import { getChallenges, modifyChallenge } from '../Store'
 
 import styles from '../Styles';
@@ -24,10 +27,10 @@ function ChildrenClaimPage({ route, navigation }) {
                 <View style={{backgroundColor: '#FFF', padding: 20, borderRadius: 5, marginTop: 5}}>
                     <Text style={{color: '#000', width: 200, fontSize: 20}}>{challenge.reward}</Text>
                 </View>
-                { challenge.file.realUri.length > 0 &&
+                { challenge.file && challenge.file.realUri.length > 0 &&
                 <TouchableOpacity style={[styles.button, {borderRadius: 10, marginTop: 10}]} onPress={async () => { 
                     try {
-                        const cUri = await FileSystem.getContentUriAsync(`file:///${challenge.file.realUri}`);
+                        const cUri = await FileSystem.getContentUriAsync(`file:///${challenge.file.realUri.replace('file:///', '')}`);
                         await IntentLauncher.startActivityAsync('android.intent.action.VIEW', { data: cUri }) 
                     } catch (e) {
                         alert('Error: ' + e);

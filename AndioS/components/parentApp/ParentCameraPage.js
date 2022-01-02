@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 import { Ionicons } from '@expo/vector-icons';
 
-function ParentCameraPage() {
+function ParentCameraPage({route, navigation}) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const ref = useRef(null)
@@ -17,7 +17,8 @@ function ParentCameraPage() {
   
   _takePhoto = async () => {
     const photo = await ref.current.takePictureAsync()
-    console.debug(photo)
+    route.params.setChosenFile(photo);
+    navigation.pop();
   }
 
   if (hasPermission === null) {
@@ -37,8 +38,9 @@ function ParentCameraPage() {
           }}>
           <TouchableOpacity
             style={{
-              flex: 0.1,
-              alignSelf: 'flex-end',
+              flex: 0.2,
+              position: 'absolute',
+              alignSelf: 'flex-start',
               alignItems: 'center',
             }}
             onPress={() => {
@@ -48,18 +50,19 @@ function ParentCameraPage() {
                   : Camera.Constants.Type.back
               );
             }}>
-            <Ionicons name={ Platform.OS === 'ios' ? "ios-camera-reverse" : 'md-camera-reverse'} size={40} color="white" />
+            <Ionicons style={{marginLeft: 10, marginTop: 10}} name={ Platform.OS === 'ios' ? "ios-camera-reverse" : 'md-camera-reverse'} size={40} color="white" />
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={_takePhoto}
-          >
-            <View style={{ flex: 0.1, alignSelf: 'flex-end', alignItems: 'center' }}>
+            style={{flex: 1, alignSelf: 'flex-end', alignItems: 'center', justifyContent: 'center'}}>
+            <View style={{ 
                borderWidth: 2,
                borderRadius:25,
                borderColor: 'white',
                height: 50,
                width:50,
+               marginBottom: 10,
                display: 'flex',
                justifyContent: 'center',
                alignItems: 'center'}}

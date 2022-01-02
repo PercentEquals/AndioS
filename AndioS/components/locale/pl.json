@@ -44,5 +44,8 @@
     "you-need-to-wait": "Musisz poczekać ",
     "hours": "godzin",
     "add-file-reward": "Dodaj plik z nagrodą (opcjonalnie)",
-    "open-reward-file": "Otwórz plik z nagrodą"
+    "open-reward-file": "Otwórz plik z nagrodą",
+    "take-photo": "Zrób zdjęcie",
+    "load-file": "Wybierz plik",
+    "select": "Wybierz"
 }

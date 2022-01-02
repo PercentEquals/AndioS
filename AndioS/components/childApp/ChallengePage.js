@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import { Text, View, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
 
 import localize from '../locale/Localization';
 import Background from '../Background';
@@ -38,6 +38,11 @@ function ChallengePage({ route, navigation }) {
                 challenge.dates.find(date =>
                     new Date(date.date).getTime() > new Date().getTime() && date.done === false
                 ).done = true;
+
+                if (challenge.dates[challenge.dates.length - 1].done) {
+                    challenge.finished = true;
+                }
+
                 await modifyChallenge(challenge);
         
                 alert(localize('challenge-finished'));

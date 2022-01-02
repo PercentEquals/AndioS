@@ -44,5 +44,8 @@
     "you-need-to-wait": "You need to wait ",
     "hours": "hours",
     "add-file-reward": "Add file reward (optional)",
-    "open-reward-file": "Open reward file"
+    "open-reward-file": "Open reward file",
+    "take-photo": "Take photo",
+    "load-file": "Load file",
+    "select": "Select"
 }

@@ -43,7 +43,7 @@ function ParentChallangePage({ navigation }) {
                 <ScrollView>
                     {
                         challenges.map(challenge => {
-                            if (new Date(challenge.dates[0].date).getTime() > new Date().getTime()) {
+                            if (new Date(challenge.dates[0].date).getTime() > new Date().getTime() && !challenge.finished && !challenge.dates[0].done) {
                                 return <Challenge key={challenge.id} challenge={challenge} buttonText={localize('cancel') + " ❌"} onPress={() => { 
                                     Alert.alert(localize('are-you-sure'), "", [
                                         { text: localize('yes'), onPress: async () => { await removeChallenge(challenge); navigation.pop() }},
