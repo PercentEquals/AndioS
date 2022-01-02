@@ -18,10 +18,9 @@ function ChallengePage({ route, navigation }) {
         let isSameDay = null;
 
         for (const dates of challenge.dates) {
-            if (!dates.done) {
-                if (!datesAreOnSameDay(new Date(dates.date), new Date())) {
-                    isSameDay = datesHourDiff(new Date(dates.date), new Date()) - 12;
-                    return;
+            if (!dates.done && isSameDay === null) {
+                if (new Date(dates.date).getTime() > new Date().getTime()) {
+                    isSameDay = datesHourDiff(new Date(dates.date), new Date());
                 }
             }
         }

@@ -8,7 +8,7 @@ import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({adapter: new Adapter()});
 
-describe('<ChildrenPage />', () => {
+describe('<ChildrenPage />', async () => {
     it('renders', () => {
         const component = renderer.create(
             <ChildrenPage />

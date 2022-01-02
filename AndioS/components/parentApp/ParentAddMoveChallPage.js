@@ -45,7 +45,6 @@ function ParentAddMoveChallPage({navigation}) {
         }
 
         try {
-            console.log(chosenFile);
             if (chosenFile !== null && chosenFile.type !== 'cancel') {
                 const fileBuffor = `${FileSystem.documentDirectory}AndioS/${chosenFile.name}`;
                 await FileSystem.copyAsync({ from: `file:///${chosenFile.uri.replace('file:///', '')}`, to: `file:///${fileBuffor.replace('file:///', '')}` });
