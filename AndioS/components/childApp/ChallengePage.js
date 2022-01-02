@@ -18,9 +18,11 @@ function ChallengePage({ route, navigation }) {
         let isSameDay = null;
 
         for (const dates of challenge.dates) {
-            if (!datesAreOnSameDay(new Date(dates.date), new Date())) {
-                isSameDay = datesHourDiff(new Date(dates.date), new Date()) - 12;
-                return;
+            if (!dates.done) {
+                if (!datesAreOnSameDay(new Date(dates.date), new Date())) {
+                    isSameDay = datesHourDiff(new Date(dates.date), new Date()) - 12;
+                    return;
+                }
             }
         }
 
@@ -31,13 +33,19 @@ function ChallengePage({ route, navigation }) {
     }, []);
 
     const finishChall = async () => {
-        challenge.dates.find(date =>
-            new Date(date.date).getTime() > new Date().getTime() && date.done === false
-        ).done = true;
-        await modifyChallenge(challenge);
-
-        alert(localize('challenge-finished'));
-        navigation.pop();
+        Alert.alert(localize('are-you-sure'), localize('have-you-finished'), [
+            { text: localize('yes'), onPress: async () => { 
+                challenge.dates.find(date =>
+                    new Date(date.date).getTime() > new Date().getTime() && date.done === false
+                ).done = true;
+                await modifyChallenge(challenge);
+        
+                alert(localize('challenge-finished'));
+                navigation.pop();
+                navigation.pop();
+            }},
+            { text: localize('no'), onPress: () => {}},
+        ]);
     };
 
     return (  
